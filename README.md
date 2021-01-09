@@ -1,5 +1,5 @@
 # achia.ca
-![banner](http://www.achia.ca/Images/Elf_Proud.jpg)
+![banner](https://achia.ca/Images/Elf_proud.jpg)
 
 Personal link to some of my projects or other things.
 
