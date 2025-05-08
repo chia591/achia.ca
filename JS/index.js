@@ -29,7 +29,7 @@ document.getElementById('toggle-theme').addEventListener('click', function () {
     }
 });
 
-const csvUrl = 'https://docs.google.com/spreadsheets/d/1StW1SIvVre2s1GXyEf-xmg6M-X8RCw0U7Zru_DyUHKg/export?format=csv';
+const csvUrl = 'https://docs.google.com/spreadsheets/d/1StW1SIvVre2s1GXyEf-xmg6M-X8RCw0U7Zru_DyUHKg/gviz/tq?tqx=out:csv&sheet=$RG';
 //const csvUrl = "Gunpla Checklist - HG.csv"
 Papa.parse(csvUrl, {
     download: true,
