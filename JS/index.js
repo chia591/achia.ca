@@ -36,8 +36,8 @@ const csvUrl = 'https://docs.google.com/spreadsheets/d/1StW1SIvVre2s1GXyEf-xmg6M
         header: true, // Automatically uses the first row as keys
         complete: function(results) {
             console.log("Parsed CSV Data:", results.data);
-            data = results.data.filter(row => row["Kit"] && row["Kit"].trim() !== "");
-            console.log("Filtered CVS Data1:", results.data);
+            data = results.data.filter(row => row["Kit"] && row["Kit"].trim().length > 0);
+            console.log("Filtered CVS Data2:", results.data);
             // Example: Display data in a table
             const container = document.getElementById('data-container');
             results.data.forEach(row => {
