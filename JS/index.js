@@ -29,9 +29,20 @@ document.getElementById('toggle-theme').addEventListener('click', function () {
     }
 });
 
-fetch('https://docs.google.com/spreadsheets/d/1StW1SIvVre2s1GXyEf-xmg6M-X8RCw0U7Zru_DyUHKg/gviz/tq?tqx=out:json')
-    .then(response => response.text())
-    .then(data =>{ 
-        const jsonData = JSON.parse(data);
-        console.log(jsonData.table.rows);
+const csvUrl = 'https://docs.google.com/spreadsheets/d/1StW1SIvVre2s1GXyEf-xmg6M-X8RCw0U7Zru_DyUHKg/export?format=csv';
+
+    Papa.parse(csvUrl, {
+        download: true,
+        header: true, // Automatically uses the first row as keys
+        complete: function(results) {
+            console.log("Parsed CSV Data:", results.data);
+
+            // Example: Display data in a table
+            const container = document.getElementById('data-container');
+            results.data.forEach(row => {
+                const p = document.createElement('p');
+                p.textContent = JSON.stringify(row);
+                container.appendChild(p);
+            });
+        }
     });
