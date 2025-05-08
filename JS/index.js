@@ -28,3 +28,10 @@ document.getElementById('toggle-theme').addEventListener('click', function () {
         this.textContent = '🌙';
     }
 });
+
+fetch('https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/gviz/tq?tqx=out:json')
+    .then(response => response.text())
+    .then(data =>{ 
+        const jsonData = JSON.parse(data);
+        console.log(jsonData.table.rows);
+    });
