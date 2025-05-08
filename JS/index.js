@@ -30,20 +30,44 @@ document.getElementById('toggle-theme').addEventListener('click', function () {
 });
 
 const csvUrl = 'https://docs.google.com/spreadsheets/d/1StW1SIvVre2s1GXyEf-xmg6M-X8RCw0U7Zru_DyUHKg/export?format=csv';
+//const csvUrl = "Gunpla Checklist - HG.csv"
+Papa.parse(csvUrl, {
+    download: true,
+    header: true,
+    complete: function(results) {
+        console.log("Headers:", results.meta.fields);
 
-    Papa.parse(csvUrl, {
-        download: true,
-        header: true, // Automatically uses the first row as keys
-        complete: function(results) {
-            console.log("Parsed CSV Data:", results.data);
-            data = results.data.filter(row => row["Kit"] && row["Kit"].trim().length > 0);
-            console.log("Filtered CVS Data2:", results.data);
-            // Example: Display data in a table
-            const container = document.getElementById('data-container');
-            results.data.forEach(row => {
-                const p = document.createElement('p');
-                p.textContent = JSON.stringify(row);
-                container.appendChild(p);
+        const filtered = results.data.filter(row => {
+            return row["Kit"]?.trim();
+        });
+
+        console.log("Filtered CSV Data:", filtered);
+
+        const tableBody = document.querySelector("#data-table tbody");
+
+        // Loop through the filtered rows and add them to the table
+        filtered.forEach(row => {
+            const tr = document.createElement("tr");
+
+            // Loop through the first 8 keys in the row (columns)
+            const keys = Object.keys(row).slice(0, 8);  // Ensure we only take the first 8 columns
+            keys.forEach(key => {
+                const td = document.createElement("td");
+
+                let cellValue = row[key];
+
+                if (cellValue === "TRUE"){
+                    td.innerHTML = "✔";
+                } else if (cellValue === "FALSE") {
+                    td.innerHTML = "❌";
+                } else {
+                    td.textContent = cellValue;  // Display other values as they are
+                }
+                tr.appendChild(td);
             });
-        }
-    });
+
+            // Add the row to the table body
+            tableBody.appendChild(tr);
+        });
+    }
+});
