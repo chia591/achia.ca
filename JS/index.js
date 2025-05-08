@@ -29,7 +29,7 @@ document.getElementById('toggle-theme').addEventListener('click', function () {
     }
 });
 
-fetch('https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/gviz/tq?tqx=out:json')
+fetch('https://docs.google.com/spreadsheets/d/1StW1SIvVre2s1GXyEf-xmg6M-X8RCw0U7Zru_DyUHKg/gviz/tq?tqx=out:json')
     .then(response => response.text())
     .then(data =>{ 
         const jsonData = JSON.parse(data);
