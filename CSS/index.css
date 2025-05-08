@@ -70,7 +70,7 @@ body.light-mode #toggle-theme:hover {
 }
 
 .sidebar-icons a {
-    background-color: #c3d7e7; /* Dark background */
+    background-color: #ffffff; /* Dark background */
     padding: 10px;
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Soft shadow */
